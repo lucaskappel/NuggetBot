@@ -9,9 +9,9 @@ from discord.ext import commands
 
 class Bot_Client(commands.Bot):
     async def setup_hook(self):
-        for filename in os.listdir("./cogs"):
-            if filename.endswith(".py"):
-                await self.load_extension(f"cogs.{filename[:-3]}")
+        for filename in os.listdir("extensions"):
+            if filename.endswith(".py") and "template" not in filename:
+                await self.load_extension(f"extensions.{filename[:-3]}")
 
 #### #### #### ####
 
@@ -46,7 +46,7 @@ def run_bot():
     @bot_client.event  # handle messages before passing them to the command processing.
     async def on_message(message):
         if message.author.bot: return  # Bot should not respond to itself or other bots ;i
-        if message.author.id == 183033825108951041 and 'sync command tree now' in message.content:
+        if message.author.id == 183033825108951041 and 'sync NuggetBot' in message.content:
             await bot_client.tree.sync()
             await message.channel.send("Command sync complete.")
         #await bot_client.process_commands(message) # Otherwise check if the message is a command.

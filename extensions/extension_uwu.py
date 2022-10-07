@@ -6,7 +6,8 @@ from discord import app_commands
 
 @app_commands.context_menu(name="UWU-ify! >.<")
 async def cm_uwuify(interaction: discord.Interaction, message: discord.Message):
-    await interaction.response.send_message(uwu_text(message.content))
+    await interaction.response.defer(thinking=False)
+    await interaction.followup.send(uwu_text(message.content))
 
 
 def uwu_text(text_to_uwu):

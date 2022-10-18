@@ -37,6 +37,7 @@ class Cog_NASA(commands.Cog):
             description=json_response['explanation']
         )
         if 'copyright' in json_response.keys(): embed_apod.title = embed_apod.title + f"\n{json_response['copyright']}"
+
         embed_apod.set_image(url=json_response['hdurl'])
         await interaction.followup.send(embed=embed_apod)
 
